@@ -1,10 +1,11 @@
-import { ButtonProps } from "@/stories/Button";
-import Button from "./Button";
+import Button, { ButtonProps }from "./Button";
 import { StoryObj, Meta } from "@storybook/react";
 
 const meta: Meta<ButtonProps> ={
     title: "Button",
-    tags: ["autodocs"]
+    tags: ["autodocs"], 
+    component: Button,
+    argTypes: {}
     
 }
 
