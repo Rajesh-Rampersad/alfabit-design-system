@@ -1,49 +1,33 @@
 export type ButtonProps = {
     children: React.ReactNode,
     className?: string;
+    variant?: 'primary' | 'secondary' | 'tertiary'
+    disabled?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function Button ({children, className, disabled, ...rest}: ButtonProps)  {
-    const generalStyle = 'rounded-md px-6 py-2'
-    const Btn =(classes:string) => {
+function getVariant(variant: ButtonProps['variant'], disabled: ButtonProps['disabled']){
+
+    switch(variant){
+        case 'primary':
+            return disabled ? 'bg-disabled text-disabled' : 'bg-primary text-white'
+        case 'secondary':
+            return disabled ? 'bg-disabled text-disabled' : 'bg-quaternary text-primary'
+        case 'tertiary':
+        default:
+            return disabled ? '' : ''
+}
+    
+}
+
+export default function Button ({variant = 'primary', children, className, disabled, ...rest}: ButtonProps)  {
+  
         return (
             <button
-            className={`${generalStyle} ${classes} ${className}`}
+            className={` rounded-md px-6 py-2 ${getVariant(variant, disabled)} ${className}`}
                 disabled={disabled}
                 {...rest}
             >
             { children }
             </button>
         )
-        
-    }
-    
-    return Btn(disabled ? 'bg-bg-disabled text-text-disabled': 'bg-primary text-white')
 }
-
-// export type ButtonProps = {
-//     children: React.ReactNode;
-//     className?: string;
-//   }
-  
-//   export default function Button({
-//     children,
-//     className,
-//     disabled,
-//     ...rest
-//   }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-//     const generalStyle = 'rounded-md px-6 py-2';
-//     const Btn = (classes: string) => {
-//       return (
-//         <button
-//           className={`${generalStyle} ${classes} ${className}`}
-//           disabled={disabled}
-//           {...rest}
-//         >
-//           {children}
-//         </button>
-//       );
-//     };
-  
-//     return Btn(disabled ? 'bg-bg-disabled text-text-disabled' : 'bg-primary text-white');
-//   }
