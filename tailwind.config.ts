@@ -1,10 +1,5 @@
-import type { Config } from "tailwindcss";
-
-function toRgba(cssVariable: string) {
-  const color = `var(${cssVariable})`
-  return ({ opacityValue }: { opacityValue: number }) => `rgba(${color}, ${opacityValue})`
-}
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -43,11 +38,11 @@ const config: Config = {
       9: 'var(--spacing-4xl) /* 56px */',
     },
     fontSize: {
-      xs: 'var(--font-xs)',
-      sm: 'var(--font-sm)',
-      md: 'var(--font-md)',
-      lg: 'var(--font-lg)',
-      xl: 'var(--font-xl)',
+      xs: 'var(--text-xs)',
+      sm: 'var(--text-sm)',
+      md: 'var(--text-md)',
+      lg: 'var(--text-lg)',
+      xl: 'var(--text-xl)',
     },
     extend: {
       colors: {
@@ -60,6 +55,7 @@ const config: Config = {
         icon: 'rgba(var(--icon), <alpha-value>)',
         outline: 'rgba(var(--outline), <alpha-value>)',
         divider: 'rgba(var(--divider), <alpha-value>)',
+        disabled: 'rgba(var(--text-disabled), <alpha-value>)',
       },
       backgroundColor: {
         light: 'rgba(var(--bg-light), <alpha-value>)',
@@ -67,12 +63,11 @@ const config: Config = {
         disabled: 'rgba(var(--bg-disabled), <alpha-value>)',
       },
       textColor: {
-        gray:{
+        gray: {
           primary: 'rgba(var(--text-primary), <alpha-value>)',
           secondary: 'rgba(var(--text-secondary), <alpha-value>)',
           tertiary: 'rgba(var(--text-tertiary), <alpha-value>)',
         },
-        disabled: 'rgba(var(--text-disabled), <alpha-value>)',
       },
       boxShadow: {
         sm: 'var(--shadow-sm)',
@@ -95,5 +90,3 @@ const config: Config = {
   },
   plugins: [],
 }
-
-export default config;
